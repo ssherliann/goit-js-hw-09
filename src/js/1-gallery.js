@@ -100,3 +100,4 @@ let lightbox = new SimpleLightbox('.gallery a', {
 });
 
 lightbox.on('show.simplelightbox');
+
