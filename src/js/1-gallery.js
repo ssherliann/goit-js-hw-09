@@ -1,3 +1,6 @@
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 const images = [
     {
         preview:
@@ -68,35 +71,27 @@ const images = [
 const gallery = document.querySelector('.gallery');
 
 for (let i = 0; i < images.length; i++) {
-    const list = document.createElement('li');
-    list.classList.add('gallery-item');
+    const galleryItem = document.createElement('li');
+    galleryItem.classList.add('gallery-item');
 
-    const link = document.createElement('a');
-    link.classList.add('gallery-link');
-    link.href = images[i].original;
+    const galleryLink = document.createElement('a');
+    galleryLink.classList.add('gallery-link');
+    galleryLink.href = images[i].original;
 
     const img = document.createElement('img');
     img.classList.add('gallery-image');
 
     img.src = images[i].preview; 
     img.alt = images[i].description;
-    img.setAttribute('data-source', images[i].original);
 
-    link.appendChild(img); 
-    list.appendChild(link);
-    gallery.appendChild(list);
+    galleryLink.appendChild(img); 
+    galleryItem.appendChild(galleryLink);
+    gallery.appendChild(galleryItem);
 }
 
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
-
-let lightbox = new SimpleLightbox('.gallery a', { 
-    captions: true,
-    captionSelector: 'img',
-    captionType: 'attr',
+const lightbox = new SimpleLightbox('.gallery a', { 
     captionsData: 'alt',
-    captionPosition: 'bottom',
-    animation: 250,
+    captionDelay: 250,
 });
 
 lightbox.on('show.simplelightbox');
